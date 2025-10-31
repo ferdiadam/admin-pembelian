@@ -1,0 +1,26 @@
+<h2>Kurangi Stok Produk</h2>
+
+<form action="/produk/kurangi-stok/<%= produk.id %>" method="POST">
+  <p><strong>Produk:</strong> <%= produk.nama %></p>
+  <p><strong>Stok saat ini:</strong> <%= produk.stok %></p>
+
+  <label>Jumlah yang ingin dikurangi:</label>
+  <input 
+    type="number" 
+    name="jumlah" 
+    min="1" 
+    max="<%= produk.stok %>" 
+    required
+  >
+
+  <button 
+    type="submit" 
+    onclick="return confirm('Yakin ingin mengurangi stok produk ini?');"
+  >
+    Kurangi Stok
+  </button>
+</form>
+
+<div style="margin-top:15px;">
+  <a href="/produk">Kembali ke Daftar Produk</a>
+</div>

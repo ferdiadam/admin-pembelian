@@ -1,0 +1,20 @@
+{
+  "name": "admin-pembelian-furnitur",
+  "version": "1.0.0",
+  "description": "Sistem admin sederhana untuk pembelian produk furnitur (Node.js + Express + EJS + SQLite)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "init-db": "sqlite3 database/app.db < database/init.sql"
+  },
+  "author": "Nama Kamu",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "ejs": "^3.1.9",
+    "express": "^4.21.0",
+    "express-ejs-layouts": "^2.5.1",
+    "method-override": "^3.0.0",
+    "sqlite3": "^5.1.7"
+  }
+}

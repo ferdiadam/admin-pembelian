@@ -1,0 +1,20 @@
+<h2>Tambah Produk Baru</h2>
+<form action="/produk/tambah" method="POST" style="max-width:400px; margin:auto;">
+  <label>Nama Produk</label>
+  <input type="text" name="nama" required>
+
+  <label>Harga</label>
+  <input type="number" name="harga" required>
+
+  <label>Deskripsi</label>
+  <textarea name="deskripsi" rows="3"></textarea>
+
+  <label>Stok Awal</label>
+  <input type="number" name="stok" required>
+
+  <button type="submit" class="btn">Simpan Produk</button>
+</form>
+
+<div style="text-align:center; margin-top:10px;">
+  <a href="/produk">← Kembali</a>
+</div>

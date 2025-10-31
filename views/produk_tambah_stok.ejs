@@ -1,0 +1,15 @@
+<h2>Tambah Stok Produk</h2>
+
+<form action="/produk/tambah-stok/<%= produk.id %>" method="POST" style="max-width:400px; margin:auto;">
+  <p><strong>Nama Produk:</strong> <%= produk.nama %></p>
+  <p><strong>Stok Saat Ini:</strong> <%= produk.stok %></p>
+
+  <label>Jumlah Tambahan</label>
+  <input type="number" name="jumlah" min="1" required>
+
+  <button type="submit" class="btn">Tambah Stok</button>
+</form>
+
+<div style="text-align:center; margin-top:10px;">
+  <a href="/produk">← Kembali</a>
+</div>

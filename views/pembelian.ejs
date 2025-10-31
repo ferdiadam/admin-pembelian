@@ -1,0 +1,41 @@
+
+<h2>Daftar Pembelian</h2>
+
+<div style="text-align:center; margin-bottom:15px;">
+  <a href="/pembelian/tambah" class="btn">+ Tambah Pembelian</a>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Produk</th>
+      <th>Jumlah</th>
+      <th>Total Harga</th>
+      <th>Tanggal</th>
+      <th>Status</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% pembelianList.forEach(p => { %>
+      <tr>
+        <td><%= p.id %></td>
+        <td><%= p.produk %></td>
+        <td><%= p.jumlah %></td>
+        <td>Rp <%= p.total_harga.toLocaleString('id-ID') %></td>
+        <td><%= p.tanggal %></td>
+        <td><%= p.status %></td>
+        <td>
+          <% if (p.status === 'SUKSES') { %>
+            <form action="/pembelian/batal/<%= p.id %>" method="POST">
+              <button type="submit" class="btn">Batalkan</button>
+            </form>
+          <% } else { %>
+            <em>Sudah Dibatalkan</em>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

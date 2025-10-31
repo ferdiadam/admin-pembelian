@@ -1,0 +1,20 @@
+
+<h2>Tambah Pembelian</h2>
+
+<form action="/pembelian/tambah" method="POST" style="max-width:400px; margin:auto;">
+  <label>Produk</label>
+  <select name="produk_id" required>
+    <% produkList.forEach(p => { %>
+      <option value="<%= p.id %>"><%= p.nama %> (Stok: <%= p.stok %>)</option>
+    <% }) %>
+  </select>
+
+  <label>Jumlah</label>
+  <input type="number" name="jumlah" min="1" required>
+
+  <button type="submit" class="btn">Simpan Pembelian</button>
+</form>
+
+<div style="text-align:center; margin-top:10px;">
+  <a href="/pembelian">← Kembali</a>
+</div>
