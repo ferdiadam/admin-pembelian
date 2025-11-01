@@ -157,3 +157,6 @@ h1, h2 {
   text-align: center;
   margin-bottom: 15px;
 }
+
+.msg.bot { background-color: #f1f1f1; }
+.msg.user { background-color: #e6f3ff; text-align: right; }
