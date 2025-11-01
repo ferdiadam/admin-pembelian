@@ -1,0 +1,120 @@
+/* ===== Chat Window ===== */
+.chat-window {
+  width: 100%;
+  height: 400px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  scroll-behavior: smooth;
+}
+
+/* ===== Pesan ===== */
+.msg {
+  margin: 8px 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  max-width: 80%;
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+.msg.user {
+  background: #d9eafc;
+  align-self: flex-end;
+  text-align: right;
+  color: #000;
+}
+
+.msg.bot {
+  background: #efefef;
+  align-self: flex-start;
+  color: #333;
+}
+
+/* ===== Input Area (ChatGPT Style) ===== */
+#chat-form {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 40px;
+  padding: 8px 12px;
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+#chat-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  padding: 10px 12px;
+  border-radius: 40px;
+  background: transparent;
+  color: #333;
+}
+
+#chat-input::placeholder {
+  color: #aaa;
+}
+
+/* Tombol Kirim */
+#chat-form button {
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+#chat-form button:hover {
+  background: #333;
+}
+
+/* ===== Container ===== */
+.chatbot-container {
+  max-width: 700px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chatbot-container h2 {
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ===== Footer Link ===== */
+.chat-footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.chat-footer a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.chat-footer a:hover {
+  color: #007bff;
+}

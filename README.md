@@ -1,33 +1,45 @@
-#  Admin Pembelian – Sistem Manajemen Produk & Transaksi
+#  Admin Pembelian Furnitur + Chatbot AI (Gemini)
 
-Aplikasi **Admin Pembelian** adalah sistem sederhana berbasis **Node.js (Express.js)** dengan tampilan **EJS (Embedded JavaScript)** dan database **SQLite3**, yang dirancang untuk membantu admin toko dalam mengelola data **produk**, **stok**, serta **pembelian**.
+Aplikasi **Admin Pembelian Furnitur** adalah sistem manajemen stok dan transaksi berbasis **Node.js (Express.js)** dengan **EJS** dan **SQLite3**, dilengkapi dengan **Chatbot AI (Gemini)** yang membantu admin dalam menjawab pertanyaan seputar produk, stok, dan pembelian.
 
 ---
 
 ##  Fitur Utama
 
 ###  Manajemen Produk
-- Menampilkan daftar seluruh produk furnitur beserta harga, deskripsi, dan stok.
+- Melihat daftar semua produk furnitur lengkap dengan harga, deskripsi, dan stok.
 - Menambahkan produk baru ke dalam database.
-- Menambah stok produk yang sudah ada.
-- Mengurangi stok produk.
+- Menambah atau mengurangi stok produk.
 - Menghapus produk dari sistem.
 
 ###  Manajemen Pembelian
-- Melakukan input pembelian produk oleh admin.
-- Otomatis mengurangi stok produk saat pembelian dilakukan.
-- Menampilkan daftar transaksi pembelian lengkap dengan tanggal, jumlah, total harga, dan status.
-- Fitur **batalkan pembelian**, yang mengembalikan stok secara otomatis.
+- Admin dapat mencatat transaksi pembelian produk.
+- Stok otomatis berkurang saat pembelian dilakukan.
+- Melihat daftar pembelian dengan tanggal, jumlah, total harga, dan status transaksi.
+- Fitur **batalkan pembelian**, yang otomatis mengembalikan stok produk.
 
-###  Teknologi yang Digunakan
+###  Chatbot AI (Gemini)
+- Terintegrasi langsung dengan **Google Gemini API**.
+- Dapat menjawab pertanyaan seputar data toko, seperti:
+  - “Apa saja meja yang tersedia?”
+  - “Berapa stok kursi kantor?”
+  - “Barang apa saja stoknya di bawah 10?”
+  - “Berapa total nilai stok di gudang?”
+- Chatbot juga bisa memberikan jawaban umum terkait administrasi pembelian furnitur.
+
+---
+
+##  Teknologi yang Digunakan
+
 | Teknologi | Fungsi |
 |------------|--------|
 | **Node.js** | Server utama |
 | **Express.js** | Framework backend |
-| **EJS** | Template engine untuk tampilan dinamis |
-| **SQLite3** | Database lokal (ringan dan cepat) |
+| **EJS (Embedded JavaScript)** | Template engine untuk tampilan |
+| **SQLite3** | Database lokal ringan dan cepat |
+| **Google Gemini API** | Layanan AI untuk Chatbot |
 | **CSS Vanilla** | Desain sederhana dan responsif |
-| **JavaScript (Client)** | Interaksi tambahan di sisi pengguna |
+| **JavaScript (Client-side)** | Interaksi UI dan form |
 
 ---
 
@@ -40,109 +52,142 @@ ADMIN-PEMBELIAN/
 │
 ├── models/
 │ ├── db.js
-│ ├── pembelianModel.js
-│ └── produkModel.js
+│ ├── produkModel.js
+│ └── pembelianModel.js
 │
 ├── public/
 │ ├── css/
-│ │ └── style.css
+│ │ ├── style.css
+│ │ └── chat.css
 │ └── js/
-│ └── main.js
+│ ├── main.js
+│ └── chat.js
 │
 ├── routes/
 │ ├── index.js
+│ ├── produk.js
 │ ├── pembelian.js
-│ └── produk.js
+│ └── chatbot.js
 │
 ├── views/
 │ ├── layout.ejs
 │ ├── index.ejs
-│ ├── pembelian.ejs
-│ ├── pembelian_tambah.ejs
 │ ├── produk.ejs
 │ ├── produk_tambah.ejs
 │ ├── produk_tambah_stok.ejs
-│ └── produk_kurangi_stok.ejs
+│ ├── produk_kurangi_stok.ejs
+│ ├── pembelian.ejs
+│ ├── pembelian_tambah.ejs
+│ └── chatbot.ejs
 │
+├── .env
+├── .gitignore
 ├── package.json
 ├── package-lock.json
 ├── server.js
 └── README.md
 
 
-##  Cara Menjalankan Aplikasi 
-1. Clone atau download project
-git clone https://github.com/username/admin-pembelian.git
-cd admin-pembelian
+##  Struktur Database
 
-2. Install dependencies
-npm install
+###  Tabel `produk`
+| Kolom | Tipe | Keterangan |
+|--------|------|------------|
+| id | INTEGER (PK) | ID unik produk |
+| nama | TEXT | Nama produk |
+| harga | INTEGER | Harga satuan |
+| deskripsi | TEXT | Deskripsi produk |
+| stok | INTEGER | Jumlah stok tersedia |
 
-3. Inisialisasi Database
-Aplikasi menggunakan file SQL untuk membuat struktur tabel dan data awal.
-Jalankan perintah ini di folder database/:
-sqlite3 app.db < init.sql
+### 🧾 Tabel `pembelian`
+| Kolom | Tipe | Keterangan |
+|--------|------|------------|
+| id | INTEGER (PK) | ID transaksi |
+| produk_id | INTEGER (FK) | ID produk yang dibeli |
+| jumlah | INTEGER | Jumlah pembelian |
+| total_harga | INTEGER | Total harga transaksi |
+| tanggal | TIMESTAMP | Tanggal pembelian |
+| status | TEXT | Status (SUKSES / DIBATALKAN) |
 
-4. Jalankan server
-npm start
+---
 
-Atau langsung:
-node server.js
+##  Cara Menjalankan Aplikasi
 
-5. Akses aplikasi di browser
-http://localhost:3000
+1. **Clone atau download project**
+   ```bash
+   git clone https://github.com/username/admin-pembelian.git
+   cd admin-pembelian
 
-## Struktur Database
-Tabel produk
-Kolom	Tipe	Keterangan
-id	INTEGER (PK)	ID unik produk
-nama	TEXT	Nama produk
-harga	INTEGER	Harga satuan
-deskripsi	TEXT	Deskripsi produk
-stok	INTEGER	Jumlah stok tersedia
+2. **Install dependencies**
+    npm install
 
-Tabel pembelian
-Kolom	Tipe	Keterangan
-id	INTEGER (PK)	ID transaksi
-produk_id	INTEGER (FK)	ID produk yang dibeli
-jumlah	INTEGER	Jumlah pembelian
-total_harga	INTEGER	Total harga transaksi
-tanggal	TIMESTAMP	Tanggal transaksi
-status	TEXT	Status (SUKSES / DIBATALKAN)
+3. **Siapkan file .env**
+    GEMINI_API_KEY=ISI_DENGAN_API_KEY_KAMU
+PORT=3000
 
-## Alur Kerja Sistem
-1. Admin login ke dashboard utama.
+4. **Inisialisasi Database**
+    Jalankan perintah di folde database/:
+    sqlite3 app.db < init.sql
 
-2. Admin dapat membuka halaman Daftar Produk.
+5. **Jalankan Server**
+    npm start
+    atau
+    node server.js
 
-3. Admin bisa:
-### Tambah produk baru.
-### Tambah stok produk lama.
-### Kurangi stok jika barang rusak / keluar gudang.
-### Hapus produk.
+6. **Akses di Browser**
+    http://localhost:3000
+    
+## Contoh Interaksi Chatbot
 
-4. Pada menu Pembelian, admin bisa melakukan transaksi pembelian.
+User: “Apa saja meja yang tersedia?”
+AI:
 
-5. Sistem otomatis:
-### Mengurangi stok dari tabel produk.
-### Mencatat transaksi ke tabel pembelian.
+🪑 Meja Makan Kayu Jati — Stok: 10
+🪑 Meja Kerja Kantor — Stok: 12
+🪑 Meja TV Minimalis — Stok: 14
 
-6. Jika pembelian dibatalkan, stok produk akan dikembalikan otomatis.
+User: “Total nilai stok di gudang?”
+AI:
 
-## Tampilan Antarmuka (UI)
-Tampilan sederhana dan mudah digunakan:
-1. Dashboard menampilkan menu utama.
-2. Halaman Produk untuk melihat dan mengelola stok.
-3. Halaman Pembelian untuk mencatat transaksi.
-4.  Desain responsif dengan kombinasi warna abu-abu, biru, dan hijau lembut.
+💰 Total nilai semua stok di gudang adalah Rp 24.300.000
 
-## Developer Notes
-1. Proyek ini dirancang untuk keperluan Pre-Interview Test for Web Developer & IT Support.
-2. Struktur modular memudahkan pengembangan fitur baru.
-3. Bisa dikembangkan lebih lanjut dengan:
-### Login admin
-### Riwayat stok keluar/masuk
-### Pencarian & filter produk
+User: “Barang apa stoknya di bawah 10?”
+AI:
 
-## Lisensi
-Proyek ini bersifat open source dan dapat digunakan untuk Pre-Interview Test for Web Developer & IT Suppor dan pengembangan pribadi.
+⚠️ Produk dengan stok di bawah 10 unit:
+
+- Lemari Pakaian 3 Pintu (8 unit)
+
+- Tempat Tidur Queen Size (7 unit)
+
+## 🧩 Alur Kerja Sistem
+
+1. Admin membuka dashboard utama.
+
+2. Dapat menambah, mengubah, atau menghapus produk.
+
+3. Melakukan transaksi pembelian dari menu pembelian.
+
+4. Sistem otomatis mengurangi stok dan mencatat transaksi.
+
+5. Jika pembelian dibatalkan, stok akan otomatis dikembalikan.
+
+6. Chatbot AI dapat membantu menjawab pertanyaan tentang stok, harga, atau pembelian.
+
+## 🧱 Catatan Developer
+
+- Proyek ini dibuat untuk keperluan Pretest Web Developer & IT Support.
+
+- Struktur modular dan mudah dikembangkan.
+
+- Dapat dikembangkan lebih lanjut dengan fitur:
+
+- Login admin
+
+- Pencarian dan filter produk
+
+- Integrasi API eksternal (mis. laporan atau grafik stok)
+
+📜 Lisensi
+
+Proyek ini bersifat open source dan dapat digunakan untuk keperluan pembelajaran atau ujian pretest teknis.

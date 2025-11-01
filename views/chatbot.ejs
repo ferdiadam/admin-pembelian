@@ -1,16 +1,23 @@
-<h2 style="text-align:center;">💬 Chatbot AI</h2>
+<h2 style="text-align:center;">💬 Chatbot AI (Gemini)</h2>
 
-<div id="chat-window" style="border:1px solid #ccc; border-radius:10px; padding:15px; max-width:700px; margin:auto; background:#fff; height:400px; overflow-y:auto;">
-  <div class="msg bot">Halo! Saya siap membantu kamu. Tanyakan apa saja 🙂</div>
-</div>
+<div class="chatbot-container">
+  <div id="chat-window" class="chat-window">
+    <div class="msg bot">👋 Halo! Saya asisten AI Gemini. Silakan ajukan pertanyaan apa saja.</div>
+  </div>
 
-<form id="chat-form" style="max-width:700px; margin:15px auto; display:flex; gap:10px;">
-  <input id="chat-input" type="text" placeholder="Ketik pesan..." required style="flex:1; padding:10px; border-radius:5px; border:1px solid #ccc;">
-  <button type="submit" style="background:#007bff; color:white; border:none; border-radius:5px; padding:10px 15px;">Kirim</button>
-</form>
+  <!-- Input area bergaya ChatGPT -->
+  <form id="chat-form" class="chat-input-container">
+    <input id="chat-input" type="text" placeholder="Ketik pesan..." required>
+    <button type="submit" title="Kirim">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" width="20" height="20">
+        <path d="M2 21l21-9L2 3v7l15 2-15 2z"/>
+      </svg>
+    </button>
+  </form>
 
-<div style="text-align:center; margin-top:20px;">
-  <a href="/" style="text-decoration:none; color:#333;">← Kembali ke Dashboard</a>
+  <div class="chat-footer">
+    <a href="/" class="back-link">← Kembali ke Dashboard</a>
+  </div>
 </div>
 
 <script src="/js/chat.js"></script>
